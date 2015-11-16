@@ -1,10 +1,13 @@
 general:
   artifacts:
-    # This doesn't work
-    - "solo/target/**.tools.json"
-   
-    # But this works
+    # This works
     - "solo/target/1234.zip"
+   
+    # But this doesn't work
+    - "solo/target/*.tools.json"
+
+    # Neither this one
+    - "solo/target/**.tools.json"
 
 dependencies:
   override:
