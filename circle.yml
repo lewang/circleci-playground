@@ -1,7 +1,17 @@
+general:
+  artifacts:
+    # This doesn't work
+    - "solo/target/**.tools.json"
+   
+    # But this works
+    - "solo/target/1234.zip"
+
 dependencies:
   override:
     - exit 0
 
 test:
   override:
-    - exit 0
+    - mkdir -p solo/target
+    - touch solo/target/1234.tools.json
+    - touch solo/target/1234.zip
