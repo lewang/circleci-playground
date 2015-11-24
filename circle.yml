@@ -1,7 +1,27 @@
 dependencies:
   override:
-    - exit 0
+    ###### This will install udev #######
+    - sudo apt-get install libkmod2
+
+    - sudo apt-get install udev; true
+    - echo "exit 0" | sudo tee /var/lib/dpkg/info/udev.postinst; echo "exit 0" | sudo tee /var/lib/dpkg/info/udev.postrm; echo "exit 0" | sudo tee /var/lib/dpkg/info/udev.preinst
+    - echo "exit 0" | sudo tee /var/lib/dpkg/tmp.ci/postinst; echo "exit 0" | sudo tee /var/lib/dpkg/tmp.ci/postrm; echo "exit 0" | sudo tee /var/lib/dpkg/tmp.ci/preinst
+    - sudo dpkg --configure -a
+
+    - sudo apt-get install udev; true
+    - echo "exit 0" | sudo tee /var/lib/dpkg/info/udev.postinst; echo "exit 0" | sudo tee /var/lib/dpkg/info/udev.postrm; echo "exit 0" | sudo tee /var/lib/dpkg/info/udev.preinst
+    - sudo dpkg --configure -a
+
+    ##### This will install wine and mono-devel ####
+    - sudo add-apt-repository ppa:ubuntu-wine/ppa -y
+    - sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 3FA7E0328081BFF6A14DA29AA6A19B38D3D831EF
+    - echo "deb http://download.mono-project.com/repo/debian wheezy main" | sudo tee /etc/apt/sources.list.d/mono-xamarin.list
+    - echo "deb http://download.mono-project.com/repo/debian wheezy-libtiff-compat main" | sudo tee -a /etc/apt/sources.list.d/mono-xamarin.list
+    - sudo apt-get  update
+    - sudo apt-get  install wine mono-devel -y; true
+    - sudo dpkg -i --force-all  /var/cache/apt/archives/mono-devel_4.2.1.102-0xamarin1_all.deb; true
+    - sudo apt-get install -f; true
 
 test:
   override:
-    - exit 0
+    - dpkg -l | grep -e mono-devel -e udev -e wine
