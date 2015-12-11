@@ -1,13 +1,8 @@
-machine:
-  post:
-    - sleep 15 && service cassandra start:
-        background: true
-
 dependencies:
   override:
     - exit 0
 
 test:
   override:
-    - sleep 15; cqlsh -e "SHOW version"
+    - sudo service cassandra start; cqlsh -e "SHOW version"
 
