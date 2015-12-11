@@ -9,5 +9,5 @@ dependencies:
 
 test:
   override:
-    - cqlsh -e "SHOW version"
+    - sleep 15; cqlsh -e "SHOW version"
 
