@@ -1,3 +1,7 @@
+machine:
+  services:
+    - cassandra
+
 dependencies:
   override:
     - exit 0
