@@ -4,5 +4,5 @@ dependencies:
 
 test:
   override:
-    - sudo service cassandra start; cqlsh -e "SHOW version"
+    - sudo service cassandra start; sleep 15; cqlsh -e "SHOW version"
 
