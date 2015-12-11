@@ -1,11 +1,11 @@
 machine:
   environment:
-    wait-for-cassandra: "curl -sSL http://git.io/v0UAQ | sh"
+    cassandra-wait: "curl -sSL http://git.io/v0UAQ | sh"
 dependencies:
   override:
     - exit 0
 
 test:
   override:
-    - sudo service cassandra start; $wait-for-cassandra; cqlsh -e "SHOW version"
+    - sudo service cassandra start; $cassandra-wait; cqlsh -e "SHOW version"
 
