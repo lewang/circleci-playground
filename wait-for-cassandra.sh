@@ -1,6 +1,6 @@
 #!/bin/bash
 echo "describe cluster;" > /tmp/dc
-for i in {1..5}; do
+for i in 1 2 3 4 5; do
   echo Attempt $i
   if nodetool status | grep "^UN"; then
     exit 0

@@ -9,7 +9,7 @@ dependencies:
 test:
   override:
     - sudo service cassandra start
-    - bash wait-for-cassandra.sh
+    - curl -sSL https://s3.amazonaws.com/circle-downloads/wait-for-cassandra.sh | sh
     - cqlsh -e "SHOW version"
 
 
