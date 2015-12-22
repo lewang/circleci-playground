@@ -1,7 +1,15 @@
+machine:
+  python:
+    version: 2.7.9
+
 dependencies:
   override:
-    - exit 0
+    - curl -L -O https://s3.amazonaws.com/circle-downloads/python-2.7.9-ucs4_0.0.1_amd64.deb
+    - sudo apt-get -y purge circle-pyenv-python-2.7.9
+    - rm -rf ~/virtualenvs/venv-2.7.9/ ~/.pyenv/versions/2.7.9
+    - sudo dpkg -i python-2.7.9-ucs4_0.0.1_amd64.deb
 
 test:
   override:
-    - exit 0
+    - python -c "import sys; usc = 'USC4' if sys.maxunicode == 1114111 else 'USC2'; print(usc)"
+
