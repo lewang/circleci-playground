@@ -1,7 +1,12 @@
+machine:
+  services:
+    - docker
+
 dependencies:
   override:
-    - exit 0
+    - echo "FROM circleci/build-image:prototype-latest" > Dockerfile
 
 test:
   override:
-    - exit 0
+    - docker build .
+
