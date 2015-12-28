@@ -1,7 +1,12 @@
+machine:
+  php:
+    version: 7.0.0RC7
+
 dependencies:
   override:
     - exit 0
 
 test:
   override:
-    - exit 0
+    - gcc --version
+    - php --version
