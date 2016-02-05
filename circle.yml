@@ -8,8 +8,8 @@ machine:
 
 dependencies:
   override:
-    - exit 0
+    - gem install bundler
 
 test:
   override:
-    - exit 0
+    - bundler -v
