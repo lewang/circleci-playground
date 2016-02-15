@@ -2,6 +2,10 @@ dependencies:
   override:
     - exit 0
 
+database:
+  pre:
+    - mysql_tzinfo_to_sql /usr/share/zoneinfo | mysql -u root mysql
+
 test:
   override:
     - exit 0
