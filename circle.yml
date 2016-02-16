@@ -1,7 +1,15 @@
+machine:
+  pre:
+    - curl -sSL https://s3.amazonaws.com/circle-downloads/install-circleci-docker.sh | bash -s -- 1.10.0
+
+  services:
+    - docker
+
 dependencies:
   override:
     - exit 0
 
 test:
   override:
-    - exit 0
+    - docker run -it ubuntu bash -c "apt-get install -qq -y python  && python -c 'import pty; print pty.openpty()'"
+
