@@ -18,3 +18,7 @@ test:
     - mkdir -p solo/target
     - touch solo/target/1234.tools.json
     - touch solo/target/1234.zip
+
+  post:
+    - mkdir $CIRCLE_ARTIFACTS/json_output
+    - cp solo/target/*.json $CIRCLE_ARTIFACTS/json_output
